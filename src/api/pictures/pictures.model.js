@@ -9,7 +9,6 @@ const picturesSchema = new Schema({
     type: String,
     required: false,
   },
-  
 });
 
 const picturesModel = model('pictures', picturesSchema);
