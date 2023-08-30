@@ -1,6 +1,7 @@
 import Router from 'express';
 import * as picturesController from './pictures.controller.js';
 
+
 const router = Router();
 
 router.get('/all', picturesController.getAll);

@@ -3,14 +3,14 @@ import * as commentController from './comment.controller.js';
 
 const router = Router();
 
-router.get('/comments/all', commentController.getAllComment);
-router.get('/:pictureId/comments', commentController.getAllByPictureId);
+router.get('/all', commentController.getAll);
+router.get('/:id', commentController.findById);
 
-router.post('/comments', commentController.createComment);
+router.post('/', commentController.create);
 
-router.patch('/comments/:id', commentController.updateComment);
-router.patch('/comments/:id', commentController.patchIdComment);
+router.patch('/:id', commentController.update);
+router.patch('/:id', commentController.patchId);
 
-router.delete('/comments/:id', commentController.removeComment);
+router.delete('/:id', commentController.remove);
 
 export default router;

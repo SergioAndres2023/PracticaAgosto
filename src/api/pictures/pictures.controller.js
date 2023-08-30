@@ -1,4 +1,9 @@
 import * as picturesServices from './pictures.services.js';
+import fs from 'fs'
+//import path from 'path'
+import { fileURLToPath } from 'url'
+
+
 
 export async function getAll(req, res) {
   const pictures = await picturesServices.getAll();
@@ -6,9 +11,22 @@ export async function getAll(req, res) {
 }
 
 export async function create(req, res) {
-  const body = req.body;
+  const __dirname = fileURLToPath(new URL('./images/', import.meta.url))
+  console.log('hola', req.file )
+
+  const type = req.file.mimetype
+  const name = req.file.originalname
+  const data = fs.readFileSync(__dirname, './images/' + req.file.filename)
+
+  const body = {
+    image : data,
+    description : req.description,
+    title : req.title
+  }
+  console.log(body)
   const pictures = await picturesServices.create({ body });
-  res.json(pictures);
+  
+  res.send('imagen guardada!')
 }
 
 export async function update(req, res) {

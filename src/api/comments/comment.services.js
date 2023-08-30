@@ -1,32 +1,32 @@
 import * as commentRepo from './comment.repository.js';
 
-export async function getAllComment() {
-  const comment = await commentRepo.getAllComment();
+export async function getAll() {
+  const comment = await commentRepo.getAll();
   return comment;
 }
 
-export async function createComment({ body }) {
-  const comment = await commentRepo.createComment({ body });
+export async function create({ body }) {
+  const comment = await commentRepo.create({ body });
   return comment;
 }
 
-export async function updateComment({ id, propsToUpdate }) {
-  const updatedProps = await commentRepo.updateComment({ id, propsToUpdate });
+export async function update({ id, propsToUpdate }) {
+  const updatedProps = await commentRepo.update({ id, propsToUpdate });
   return updatedProps;
 }
 
-export async function getAllByPictureId({ id }) {
-  const comment = await commentRepo.getAllByPictureId({ id });
+export async function findById({ id }) {
+  const comment = await commentRepo.findById({ id });
   return comment;
 }
 
-export async function patchIdComment({ id, newProps }) {
-  const updatedComment = await commentRepo.patchIdComment({ id, newProps });
+export async function patchId({ id, newProps }) {
+  const updatedComment = await commentRepo.patchId({ id, newProps });
   return updatedComment;
 }
 
-export async function removeComment(req, res) {
+export async function remove(req, res) {
   const { id } = req.params;
-  const nonDeletedComment = await commentRepo.removeComment({ id });
+  const nonDeletedComment = await commentRepo.remove({ id });
   res.json(nonDeletedComment);
 }

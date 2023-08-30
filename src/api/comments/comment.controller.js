@@ -53,7 +53,7 @@
 
 import * as commentServices from './comment.services.js';
 
-export async function getAllComments(req, res) {
+export async function getAll(req, res) {
   try {
     const comments = await commentServices.getAll();
     res.json(comments);
@@ -63,7 +63,7 @@ export async function getAllComments(req, res) {
   }
 }
 
-export async function createComment(req, res) {
+export async function create(req, res) {
   try {
     const { text, pictureId } = req.body;
     const comment = await commentServices.create({ text, pictureId });
@@ -74,17 +74,17 @@ export async function createComment(req, res) {
   }
 }
 
-export async function updateComment(req, res) {
+export async function update(req, res) {
   const { id } = req.params;
   const propsToUpdate = req.body;
   const updatedProps = await commentServices.update({ id, propsToUpdate });
   res.json(updatedProps);
 }
 
-export async function getAllByPictureId(req, res) {
+export async function findById(req, res) {
   try {
-    const { pictureId } = req.params;
-    const comments = await commentServices.findByPictureId({ pictureId });
+    const { id } = req.params;
+    const comments = await commentServices.findById({ id });
     res.json(comments);
   } catch (error) {
     console.error(error);
@@ -92,7 +92,7 @@ export async function getAllByPictureId(req, res) {
   }
 }
 
-export async function patchIdComment(req, res) {
+export async function patchId(req, res) {
   const { id } = req.params;
   const newProps = req.body;
   try {
@@ -108,7 +108,7 @@ export async function patchIdComment(req, res) {
   }
 }
 
-export async function removeComment(req, res) {
+export async function remove(req, res) {
   const { id } = req.params;
   const nonDeletedComment = await commentServices.remove({ id });
   res.json(nonDeletedComment);
